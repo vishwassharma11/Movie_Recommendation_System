@@ -29,8 +29,11 @@ st.header('Movie review system')
 movies_dict = pickle.load(open('movie_dict.pkl', 'rb'))
 movies = pd.DataFrame(movies_dict)
 
-similarity = pickle.load(open('similarity.pkl', 'rb'))
+# similarity = pickle.load(open('similarity.pkl', 'rb'))
+import lzma
 
+with lzma.open("similarity.pkl.xz", "rb") as f:
+    similarity = pickle.load(f)
 option = st.selectbox(
     "Select a movie",
     movies['title_x'].values
